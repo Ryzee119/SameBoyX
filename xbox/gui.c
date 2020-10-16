@@ -1,6 +1,3 @@
-#include <OpenDialog/open_dialog.h>
-#include <SDL.h>
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -19,7 +16,6 @@ SDL_PixelFormat *pixel_format = NULL;
 enum pending_command pending_command;
 unsigned command_parameter;
 
-shader_t shader;
 static SDL_Rect rect;
 static unsigned factor;
 
@@ -64,7 +60,6 @@ configuration_t configuration =
     .color_correction_mode = GB_COLOR_CORRECTION_EMULATE_HARDWARE,
     .highpass_mode = GB_HIGHPASS_ACCURATE,
     .scaling_mode = GB_SDL_SCALING_INTEGER_FACTOR,
-    .blending_mode = GB_FRAME_BLENDING_MODE_ACCURATE,
     .rewind_length = 60 * 2,
     .model = MODEL_CGB,
     .volume = 100,

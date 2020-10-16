@@ -4,7 +4,6 @@
 #include <SDL.h>
 #include <Core/gb.h>
 #include <stdbool.h> 
-#include "shader.h"
 
 #define JOYSTICK_HIGH 0x4000
 #define JOYSTICK_LOW 0x3800
@@ -22,7 +21,6 @@ extern SDL_Renderer *renderer;
 extern SDL_Texture *texture;
 extern SDL_PixelFormat *pixel_format;
 extern SDL_Haptic *haptic;
-extern shader_t shader;
 
 enum scaling_mode {
     GB_SDL_SCALING_ENTIRE_WINDOW,
@@ -30,7 +28,6 @@ enum scaling_mode {
     GB_SDL_SCALING_INTEGER_FACTOR,
     GB_SDL_SCALING_MAX,
 };
-
 
 enum pending_command {
     GB_SDL_NO_COMMAND,

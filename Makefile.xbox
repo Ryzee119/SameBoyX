@@ -6,26 +6,21 @@ NXDK_SDL = y
 NXDK_STACKSIZE = 229377
 
 SRCS += \
-	SameBoy/Core/apu.c \
-	SameBoy/Core/camera.c \
-	SameBoy/Core/cheats.c \
-	SameBoy/Core/debugger.c \
-	SameBoy/Core/display.c \
 	SameBoy/Core/gb.c \
-	SameBoy/Core/joypad.c \
-	SameBoy/Core/mbc.c \
-	SameBoy/Core/memory.c \
-	SameBoy/Core/printer.c \
-	SameBoy/Core/random.c \
-	SameBoy/Core/rewind.c \
-	SameBoy/Core/rumble.c \
-	SameBoy/Core/save_state.c \
 	SameBoy/Core/sgb.c \
-	SameBoy/Core/sm83_cpu.c \
-	SameBoy/Core/sm83_disassembler.c \
-	SameBoy/Core/symbol_hash.c \
+	SameBoy/Core/apu.c \
+	SameBoy/Core/memory.c \
+	SameBoy/Core/mbc.c \
 	SameBoy/Core/timing.c \
-	SameBoy/Core/workboy.c \
+	SameBoy/Core/display.c \
+	SameBoy/Core/symbol_hash.c \
+	SameBoy/Core/camera.c \
+	SameBoy/Core/sm83_cpu.c \
+	SameBoy/Core/joypad.c \
+	SameBoy/Core/save_state.c \
+	SameBoy/Core/random.c \
+	SameBoy/Core/rumble.c \
+	SameBoy/Core/rewind.c \
 	xbox/font.c \
 	xbox/gui.c \
 	xbox/main.c \
@@ -34,16 +29,27 @@ SRCS += \
 	xbox/audio/sdl.c
 
 CFLAGS += \
+	-O2 \
 	-Wno-deprecated-declarations \
+	-Wno-strict-aliasing \
+	-Wno-deprecated-declarations \
+	-Wno-nonnull \
+	-Wno-unused-result \
+	-Wno-multichar \
 	-DOGXBOX \
 	-DGB_INTERNAL \
 	-DDATA_DIR='"D:\\resource\\"' \
+	-DGB_INTERNAL \
+	-DGB_DISABLE_TIMEKEEPING \
+	-DGB_DISABLE_REWIND \
+	-DGB_DISABLE_DEBUGGER \
+	-DGB_DISABLE_CHEATS \
 	-ISameBoy \
 	-ISameBoy/Core \
 	-ISameBoy/Core/graphics \
 	-Ixbox\
-	-Ixbox\audio \
-	-O2
+	-Ixbox\audio
+
 
 new_all: copy_resources all
 
