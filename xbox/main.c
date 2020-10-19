@@ -3,7 +3,7 @@
 #include <signal.h>
 #include <ctype.h>
 #include <hal/video.h>
-#include <Windows.h>
+#include <windows.h>
 #include <SDL.h>
 #include "Core/gb.h"
 #include "utils.h"

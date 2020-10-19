@@ -5,7 +5,7 @@
 #define AUDIO_FREQUENCY 96000
 #include <unistd.h>
 #else
-#include <Windows.h>
+#include <windows.h>
 /* Windows (well, at least my VM) can't handle 96KHz sound well :( */
 
 /* felsqualle says: For SDL 2.0.6+ using the WASAPI driver, the highest freq.
