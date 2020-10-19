@@ -32,18 +32,17 @@ CFLAGS += \
 	-O2 \
 	-Wno-deprecated-declarations \
 	-Wno-strict-aliasing \
-	-Wno-deprecated-declarations \
 	-Wno-nonnull \
 	-Wno-unused-result \
 	-Wno-multichar \
 	-DOGXBOX \
-	-DGB_INTERNAL \
 	-DDATA_DIR='"D:\\resource\\"' \
 	-DGB_INTERNAL \
 	-DGB_DISABLE_TIMEKEEPING \
 	-DGB_DISABLE_REWIND \
 	-DGB_DISABLE_DEBUGGER \
 	-DGB_DISABLE_CHEATS \
+	-DGB_16BIT_OUTPUT_COLOR \
 	-ISameBoy \
 	-ISameBoy/Core \
 	-ISameBoy/Core/graphics \

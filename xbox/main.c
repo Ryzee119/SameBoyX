@@ -12,7 +12,7 @@
 
 GB_gameboy_t gb;
 static bool paused = false;
-static uint32_t active_pixel_buffer[256 * 224];
+static GB_output_color_t active_pixel_buffer[256 * 224];
 static bool underclock_down = false, rewind_down = false, do_rewind = false, rewind_paused = false, turbo_down = false;
 static double clock_mutliplier = 1.0;
 
@@ -440,7 +440,7 @@ int main(int argc, char **argv)
 {
     #define str(x) #x
     #define xstr(x) str(x)
-    XVideoSetMode(640, 480, 32, REFRESH_DEFAULT);
+    XVideoSetMode(640, 480, sizeof(GB_output_color_t) * 8, REFRESH_DEFAULT);
 
     bool fullscreen = true;
     filename = malloc(256);
@@ -480,7 +480,7 @@ int main(int argc, char **argv)
     configuration.blending_mode = 0;
     atexit(save_configuration);
 
-    window = SDL_CreateWindow("SameBoy v" xstr(VERSION), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+    window = SDL_CreateWindow("SameBoy X" xstr(VERSION), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                               160 * configuration.default_scale, 144 * configuration.default_scale, SDL_WINDOW_FULLSCREEN);
 
     SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
