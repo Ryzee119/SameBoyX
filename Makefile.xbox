@@ -5,6 +5,15 @@ NXDK_SDL = y
 
 NXDK_STACKSIZE = 229377
 
+SAMEBOYOUTDIR = SameBoy/build/bin/SDL
+
+BOOTROMS = \
+	$(SAMEBOYOUTDIR)/dmg_boot.bin \
+	$(SAMEBOYOUTDIR)/cgb_boot.bin \
+	$(SAMEBOYOUTDIR)/agb_boot.bin \
+	$(SAMEBOYOUTDIR)/sgb_boot.bin \
+	$(SAMEBOYOUTDIR)/sgb2_boot.bin
+
 SRCS += \
 	SameBoy/Core/gb.c \
 	SameBoy/Core/sgb.c \
@@ -54,16 +63,15 @@ new_all: copy_resources all
 
 include $(NXDK_DIR)/Makefile
 
-copy_resources:
+copy_resources: $(BOOTROMS)
 	@mkdir -p $(OUTPUT_DIR)
 	@mkdir -p $(OUTPUT_DIR)/resource
 	@cp SameBoy/BootROMs/SameBoyLogo.png $(OUTPUT_DIR)/resource/SameBoyLogo.png
-	@cp SameBoy/BootROMs/agb_boot.asm $(OUTPUT_DIR)/resource/agb_boot.asm
-	@cp SameBoy/BootROMs/cgb_boot.asm $(OUTPUT_DIR)/resource/cgb_boot.asm
-	@cp SameBoy/BootROMs/cgb_boot_fast.asm $(OUTPUT_DIR)/resource/cgb_boot_fast.asm
-	@cp SameBoy/BootROMs/dmg_boot.asm $(OUTPUT_DIR)/resource/dmg_boot.asm
-	@cp SameBoy/BootROMs/sgb2_boot.asm $(OUTPUT_DIR)/resource/sgb2_boot.asm
-	@cp SameBoy/BootROMs/sgb_boot.asm $(OUTPUT_DIR)/resource/sgb_boot.asm
-	@cp SameBoy/Misc/registers.sym $(OUTPUT_DIR)/resource/registers.sym
+	@cp $(BOOTROMS) $(OUTPUT_DIR)/resource/
+	@cp $(SAMEBOYOUTDIR)/registers.sym $(OUTPUT_DIR)/resource/registers.sym
 	@cp SameBoy/LICENSE $(OUTPUT_DIR)/SAMEBOY_LICENSE.txt
 	@cp xbox/background.bmp $(OUTPUT_DIR)/resource/background.bmp
+	@cp -r $(SAMEBOYOUTDIR)/Shaders $(OUTPUT_DIR)/resource/Shaders
+
+$(BOOTROMS):
+	make -C SameBoy
