@@ -444,7 +444,7 @@ int main(int argc, char **argv)
 
     bool fullscreen = true;
     filename = malloc(256);
-    strcpy(filename, "D:\\test.gb");
+    strcpy(filename, "D:\\Shantae (USA).gbc");
 
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMECONTROLLER);
     SDL_SetHint(SDL_HINT_JOYSTICK_ALLOW_BACKGROUND_EVENTS, "1");
