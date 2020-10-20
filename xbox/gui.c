@@ -117,7 +117,7 @@ static void rescale_window(void)
 }
 
 /* Does NOT check for bounds! */
-static void draw_char(uint32_t *buffer, unsigned width, unsigned height, unsigned char ch, uint32_t color)
+static void draw_char(uint16_t *buffer, unsigned width, unsigned height, unsigned char ch, uint32_t color)
 {
     if (ch < ' ' || ch > font_max) {
         ch = '?';
@@ -137,7 +137,7 @@ static void draw_char(uint32_t *buffer, unsigned width, unsigned height, unsigne
 }
 
 static unsigned scroll = 0;
-static void draw_unbordered_text(uint32_t *buffer, unsigned width, unsigned height, unsigned x, unsigned y, const char *string, uint32_t color)
+static void draw_unbordered_text(uint16_t *buffer, unsigned width, unsigned height, unsigned x, unsigned y, const char *string, uint32_t color)
 {
     y -= scroll;
     unsigned orig_x = x;
@@ -160,7 +160,7 @@ static void draw_unbordered_text(uint32_t *buffer, unsigned width, unsigned heig
     }
 }
 
-static void draw_text(uint32_t *buffer, unsigned width, unsigned height, unsigned x, unsigned y, const char *string, uint32_t color, uint32_t border)
+static void draw_text(uint16_t *buffer, unsigned width, unsigned height, unsigned x, unsigned y, const char *string, uint32_t color, uint32_t border)
 {
     draw_unbordered_text(buffer, width, height, x - 1, y, string, border);
     draw_unbordered_text(buffer, width, height, x + 1, y, string, border);
@@ -175,7 +175,7 @@ enum decoration {
     DECORATION_ARROWS,
 };
 
-static void draw_text_centered(uint32_t *buffer, unsigned width, unsigned height, unsigned y, const char *string, uint32_t color, uint32_t border, enum decoration decoration)
+static void draw_text_centered(uint16_t *buffer, unsigned width, unsigned height, unsigned y, const char *string, uint32_t color, uint32_t border, enum decoration decoration)
 {
     unsigned x = width / 2 - (unsigned) strlen(string) * GLYPH_WIDTH / 2;
     draw_text(buffer, width, height, x, y, string, color, border);
@@ -748,7 +748,7 @@ void run_gui(bool is_running)
     unsigned height = GB_get_screen_height(&gb);
     unsigned x_offset = (width - 160) / 2;
     unsigned y_offset = (height - 144) / 2;
-    uint32_t pixels[width * height];
+    uint16_t pixels[width * height];
     
     if (width != 160 || height != 144) {
         for (unsigned i = 0; i < width * height; i++) {
@@ -1004,7 +1004,7 @@ void run_gui(bool is_running)
             }
             else {
                 for (unsigned y = 0; y < 144; y++) {
-                    memcpy(pixels + x_offset + width * (y + y_offset), ((uint32_t *)converted_background->pixels) + 160 * y, 160 * 4);
+                    memcpy(pixels + x_offset + width * (y + y_offset), ((uint16_t *)converted_background->pixels) + 160 * y, 160 * 4);
                 }
             }
             
